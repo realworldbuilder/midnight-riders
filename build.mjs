@@ -163,8 +163,9 @@ function page(counts) {
 ${head({ title: g.site.title, description: g.site.description })}
 <script type="application/ld+json">${JSON.stringify(faqLd).replace(/</g, '\\u003c')}</script>
 </head>
-<body>
+<body class="${marquee ? 'has-ticker' : ''}">
 ${backdrop()}
+${marquee}
 ${nav()}
 <main id="main">
   <section class="hero wrap">
@@ -177,7 +178,6 @@ ${nav()}
     </div>
     <figure class="hero-art reveal" data-tilt><img src="${esc(g.hero.image)}" alt="${esc(g.hero.alt)}" width="960" height="1720" fetchpriority="high"></figure>
   </section>
-  ${marquee}
 
   <section class="section wrap" id="nights" aria-labelledby="nights-h">
     <div class="section-head reveal">
