@@ -67,7 +67,7 @@ ${image ? `<meta property="og:image" content="${esc(image)}">\n<meta name="twitt
 }
 
 function nav(current = '') {
-  const links = [['#nights', 'Guild nights'], ['#leaders', 'Leaders'], ['#join', 'How to join'], ['#faq', 'FAQ']];
+  const links = [['#tonight', 'Tonight'], ...((g.shortcuts ?? []).length ? [['#members', 'For members']] : []), ...(g.discord.ids?.crafters ? [['#crafters', 'Crafters']] : []), ['#join', 'Join']];
   const items = links.map(([href, label], i) => `<li style="--i:${i}"><a href="${current ? './' : ''}${href}">${esc(label)}</a></li>`).join('');
   return `<a class="skip" href="#main">Skip to content</a>
 <header class="nav" data-nav>
@@ -128,7 +128,34 @@ function page(counts) {
         <p class="night-plan">${esc(n.plan)}</p>
       </li>`).join('');
 
-  const perks = g.perks.map((p) => `
+  const ids = g.discord.ids ?? {};
+  const chan = (id) => `https://discord.com/channels/${ids.server}/${id}`;
+  const data = existsSync(join(ROOT, 'data', 'discord.json')) ? JSON.parse(readFileSync(join(ROOT, 'data', 'discord.json'), 'utf8')) : { events: [], crafters: [] };
+
+  const emptyEvents = `
+          <li class="event-empty" data-empty><p>Nothing scheduled yet.</p><p class="small">Officers: make an Event in Discord (Server menu, Create Event) in one of the guild's voice rooms and it shows up here within the hour.</p></li>`;
+  const events = (data.events ?? []).map((e) => `
+          <li class="event" data-end="${esc(e.end)}">
+            <time class="event-when" datetime="${esc(e.start)}" data-when>${esc(e.start.slice(0, 16).replace('T', ' '))}</time>
+            <div class="event-body"><p class="event-name">${esc(e.name)}${e.live ? ' <span class="pill">live</span>' : ''}</p>
+            <p class="small">${e.where ? `${icon('map-pin', 'icon icon-sm')}${esc(e.where.replace(/^[^a-z0-9]+/i, ''))} · ` : ''}${e.going} going</p></div>
+            <a class="event-go" href="${esc(e.url)}" rel="noopener" aria-label="Open ${esc(e.name)} in Discord">${icon('arrow-up-right')}</a>
+          </li>`).join('') + emptyEvents;
+
+  const shortcuts = (g.shortcuts ?? []).map((s) => `
+        <li class="reveal"><a class="card shortcut" href="${esc(s.url ?? chan(s.channel))}" rel="noopener">${icon(s.icon, 'icon icon-lg')}<span><strong>${esc(s.label)}</strong><span class="small">${esc(s.text)}</span></span>${icon('arrow-up-right', 'icon go')}</a></li>`).join('');
+  const ig = g.ingame;
+  const ingame = ig ? `<div class="card ingame reveal">
+        <h3>${icon('terminal-window')}In game</h3>
+        <ul class="cmds">${(ig.commands ?? []).map((c) => `<li><kbd>${esc(c.cmd)}</kbd><span>${esc(c.text)}</span></li>`).join('')}</ul>
+        ${(ig.addons ?? []).length ? `<h3>${icon('puzzle-piece')}Addons</h3><ul class="addons">${ig.addons.map((a) => `<li><a href="${esc(a.url)}" rel="noopener"><strong>${esc(a.name)}</strong>${icon('arrow-up-right', 'icon icon-sm')}</a><span class="small">${esc(a.text)}</span></li>`).join('')}</ul>` : ''}
+      </div>` : '';
+
+  const crafters = (data.crafters ?? []).length ? `<ul class="crafters">${data.crafters.map((c) => `
+      <li class="reveal"><a class="card crafter" href="${esc(c.url)}" rel="noopener"><strong>${esc(c.name)}</strong><span class="small">${esc(c.makes || 'Ask in their post')}</span>${c.tags?.length ? `<span class="tags">${c.tags.map((x) => `<span class="pill">${esc(x)}</span>`).join('')}</span>` : ''}</a></li>`).join('')}
+    </ul>` : `<div class="card empty reveal">${icon('hammer', 'icon icon-lg')}<div><p><strong>No crafters listed yet.</strong></p><p class="small">Make a post in the crafters channel titled with your name and what you make, like “Snickelfritz · Tailoring, Enchanting”. It shows up here within the hour.</p></div></div>`;
+
+  const perks = (g.perks ?? []).map((p) => `
       <li class="card perk reveal">${icon(p.icon, 'icon icon-lg')}<h3>${esc(p.title)}</h3><p>${esc(p.text)}</p></li>`).join('');
 
   const leaders = g.leaders.map((l) => `
@@ -146,13 +173,13 @@ function page(counts) {
   const steps = g.steps.map((s, i) => `
       <li class="step reveal"><span class="step-n" aria-hidden="true">${i + 1}</span><div class="card">${icon(s.icon, 'icon icon-lg')}<h3>${esc(s.title)}</h3><p>${esc(s.text)}</p></div></li>`).join('');
 
-  const gallery = g.gallery.map((p, i) => `<li class="shot" style="--i:${i}"><img src="${esc(p.image)}" alt="${esc(p.alt)}" width="640" height="1147" loading="lazy"></li>`).join('');
+  const gallery = (g.gallery ?? []).map((p, i) => `<li class="shot" style="--i:${i}"><img src="${esc(p.image)}" alt="${esc(p.alt)}" width="640" height="1147" loading="lazy"></li>`).join('');
   const marquee = (g.marquee ?? []).length ? `<div class="marquee" aria-hidden="true"><div class="marquee-track">${[0, 1].map(() => `<p>${g.marquee.map((w) => `<span>${esc(w)}</span>${icon('moon-stars')}`).join('')}</p>`).join('')}</div></div>` : '';
 
   const faq = g.faq.map((f) => `
       <details class="card faq-item reveal"><summary><span>${esc(f.q)}</span>${icon('plus')}</summary><p>${esc(f.a)}</p></details>`).join('');
 
-  const tagline = g.tagline.split(/\s+/).map((w) => `<span class="w">${esc(w)}</span>`).join(' ');
+  const tagline = (g.tagline ?? '').split(/\s+/).map((w) => `<span class="w">${esc(w)}</span>`).join(' ');
   const cta = (cls = '') => `<a class="btn btn-primary ${cls}" href="${esc(g.discord.invite)}" rel="noopener">${icon('discord-logo')}${esc(g.discord.cta ?? 'Join on Discord')}</a>`;
 
   const faqLd = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: g.faq.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })) };
@@ -173,35 +200,68 @@ ${nav()}
       <p class="eyebrow reveal">${esc(g.hero.eyebrow)}</p>
       <h1 class="hero-title" aria-label="${esc(g.tag)}"><span aria-hidden="true">${splitTitle(g.tag)}</span></h1>
       <p class="hero-lead reveal">${esc(g.hero.lead)}</p>
-      <div class="hero-actions reveal">${cta()}<a class="btn btn-ghost" href="#nights">${icon('clock')}<span data-status>See guild nights</span></a></div>
+      <div class="hero-actions reveal">${cta()}<a class="btn btn-ghost" href="#tonight">${icon('clock')}<span data-status>See guild nights</span></a></div>
       ${reveal(proof)}
     </div>
     <figure class="hero-art reveal" data-tilt><img src="${esc(g.hero.image)}" alt="${esc(g.hero.alt)}" width="960" height="1720" fetchpriority="high"></figure>
   </section>
 
-  <section class="section wrap" id="nights" aria-labelledby="nights-h">
+  <section class="section wrap" id="tonight" aria-labelledby="tonight-h">
     <div class="section-head reveal">
-      <h2 id="nights-h">Guild nights</h2>
+      <h2 id="tonight-h">Tonight</h2>
       <p class="status" data-status-long aria-live="polite">${sched.isDaily ? 'Every night' : esc(sched.nights.map((n) => n.day).join(', '))} from ${esc(fmt12(sched.nights[0].start))} ${esc(sched.zoneLabel)}</p>
     </div>
-    <div class="clock reveal" data-clock aria-hidden="true">
-      ${sched.isDaily ? '' : '<div><span data-u="d">00</span><small>days</small></div><b>:</b>'}
-      <div><span data-u="h">00</span><small>hours</small></div><b>:</b>
-      <div><span data-u="m">00</span><small>min</small></div><b>:</b>
-      <div><span data-u="s">00</span><small>sec</small></div>
+    <div class="tonight">
+      <div class="tonight-main">
+        <div class="clock reveal" data-clock aria-hidden="true">
+          ${sched.isDaily ? '' : '<div><span data-u="d">00</span><small>days</small></div><b>:</b>'}
+          <div><span data-u="h">00</span><small>hours</small></div><b>:</b>
+          <div><span data-u="m">00</span><small>min</small></div><b>:</b>
+          <div><span data-u="s">00</span><small>sec</small></div>
+        </div>
+        <ul class="grid grid-1">${nights}
+        </ul>
+      </div>
+      <div class="card events reveal">
+        <h3>${icon('calendar-dots')}Coming up</h3>
+        <ul class="event-list" data-events>${events}
+        </ul>
+      </div>
     </div>
-    <ul class="grid ${sched.isDaily ? 'grid-1' : 'grid-3'}">${nights}
-    </ul>
   </section>
-
-  <section class="tagline wrap" aria-label="What we're about">
-    <p class="tagline-text" data-tagline>${tagline}</p>
-  </section>
-
+${shortcuts ? `
+  <section class="section wrap" id="members" aria-labelledby="members-h">
+    <div class="section-head reveal"><h2 id="members-h">For members</h2><p>Opens the right spot in our Discord</p></div>
+    <div class="members">
+      <ul class="shortcuts">${shortcuts}
+      </ul>
+      ${ingame}
+    </div>
+  </section>` : ''}
+${ids.crafters ? `
+  <section class="section wrap" id="crafters" aria-labelledby="crafters-h">
+    <div class="section-head reveal"><h2 id="crafters-h">Crafters</h2><a class="btn btn-ghost btn-sm" href="${esc(chan(ids.crafters))}" rel="noopener">${icon('hammer')}Add yourself</a></div>
+    ${crafters}
+  </section>` : ''}
+${(g.perks ?? []).length ? `
   <section class="section wrap" id="perks" aria-labelledby="perks-h">
     <div class="section-head reveal"><h2 id="perks-h">What riding with us gets you</h2></div>
     <ul class="grid grid-3">${perks}
     </ul>
+  </section>` : ''}
+${g.tagline ? `
+  <section class="tagline wrap" aria-label="What we're about">
+    <p class="tagline-text" data-tagline>${tagline}</p>
+  </section>` : ''}
+
+  <section class="section wrap" id="join" aria-labelledby="join-h">
+    <div class="section-head reveal"><h2 id="join-h">Not in the guild yet?</h2><p>${esc(g.faction)} only, ${esc(g.realm.type.toLowerCase().replace('normal (pve)', 'normal PvE'))} realm${g.realm.name ? ` <strong>${esc(g.realm.name)}</strong>` : ''}.</p></div>
+    <div class="join">
+      <ol class="timeline" data-timeline><span class="timeline-line" aria-hidden="true"><span></span></span>${steps}
+      </ol>
+      <div class="faq">${faq}
+      </div>
+    </div>
   </section>
 
   <section class="section wrap" id="leaders" aria-labelledby="leaders-h">
@@ -209,29 +269,17 @@ ${nav()}
     <div class="grid grid-2">${leaders}
     </div>
   </section>
-
-  <section class="section wrap" id="join" aria-labelledby="join-h">
-    <div class="section-head reveal"><h2 id="join-h">How to join</h2><p>${esc(g.faction)} only, ${esc(g.realm.type.toLowerCase().replace('normal (pve)', 'normal PvE'))} realm${g.realm.name ? ` <strong>${esc(g.realm.name)}</strong>` : ''}.</p></div>
-    <ol class="timeline" data-timeline><span class="timeline-line" aria-hidden="true"><span></span></span>${steps}
-    </ol>
-  </section>
-
+${(g.gallery ?? []).length ? `
   <section class="gallery" id="gallery" aria-labelledby="gallery-h" data-gallery>
     <div class="gallery-pin">
       <div class="section-head wrap reveal"><h2 id="gallery-h">From the stable</h2><p>Art from our guild nights</p></div>
       <ul class="gallery-track" data-track>${gallery}</ul>
     </div>
-  </section>
-
-  <section class="section wrap" id="faq" aria-labelledby="faq-h">
-    <div class="section-head reveal"><h2 id="faq-h">Questions</h2></div>
-    <div class="faq">${faq}
-    </div>
-  </section>
+  </section>` : ''}
 
   <section class="section wrap final reveal" aria-labelledby="final-h">
     <h2 id="final-h">There's a saddle with your name on it</h2>
-    <p>Join the Discord, press Apply in ${esc(g.discord.applyChannel)}, and ride with us on the next guild night.</p>
+    <p>Join the Discord, press Apply in ${esc(g.discord.applyChannel)}, and ride with us tonight.</p>
     ${cta()}
   </section>
 </main>

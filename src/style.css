@@ -124,11 +124,6 @@ ul, ol { list-style: none; margin: 0; padding: 0; }
 .night-day { display: flex; align-items: center; gap: var(--s2); color: var(--text) !important; font-weight: 600; margin-top: 0 !important; }
 .night-time { font: 600 30px/36px "Manrope", sans-serif; color: var(--text) !important; margin-top: var(--s3) !important; }
 .night-local { font-size: 14px; line-height: 20px; min-height: 20px; }
-.night-daily { display: grid; grid-template-columns: auto auto 1fr; align-items: center; column-gap: var(--s6); row-gap: var(--s1); }
-.night-daily .night-day { grid-column: 1 / -1; }
-.night-daily .night-time { margin-top: 0 !important; }
-.night-daily .night-plan { grid-column: 3; grid-row: 2 / span 2; margin-top: 0; max-width: 480px; justify-self: end; text-align: right; }
-@media (max-width: 860px) { .night-daily { display: block; } .night-daily .night-plan { text-align: left; margin-top: var(--s2); } }
 .night.live { border-color: var(--accent); box-shadow: 0 0 48px color-mix(in srgb, var(--accent) 28%, transparent); }
 .night.live .night-day::after { content: "Riding now"; margin-left: auto; font-size: 12px; line-height: 16px; color: var(--bg); background: var(--accent); padding: 2px var(--s2); border-radius: 9999px; }
 
@@ -140,8 +135,8 @@ ul, ol { list-style: none; margin: 0; padding: 0; }
 @media (max-width: 860px) { .tagline-text { font-size: 36px; line-height: 40px; } .tagline { padding-top: var(--s11); } }
 
 /* leaders */
-.leader { display: grid; grid-template-columns: 200px 1fr; gap: var(--s5); padding: var(--s2); transform-style: preserve-3d; }
-.leader img { width: 200px; height: 200px; object-fit: cover; border-radius: 8px; }
+.leader { display: grid; grid-template-columns: 160px 1fr; gap: var(--s5); padding: var(--s2); transform-style: preserve-3d; }
+.leader img { width: 160px; height: 160px; object-fit: cover; border-radius: 8px; }
 .leader-body { padding: var(--s3) var(--s3) var(--s3) 0; }
 .leader-role { color: var(--accent) !important; font-size: 14px; line-height: 20px; font-weight: 600; margin: 0 !important; }
 .leader h3 { font-size: 24px; line-height: 32px; margin-top: var(--s1); }
@@ -170,6 +165,64 @@ ul, ol { list-style: none; margin: 0; padding: 0; }
 .gallery.h .shot { width: min(300px, 26vw); flex: none; }
 .gallery.h .shot:nth-child(even) { translate: 0 var(--s9); }
 @media (min-width: 861px) { .gallery:not(.h) .gallery-track { grid-template-columns: repeat(4, 1fr); } }
+
+/* tonight: the countdown and tonight's card beside what's coming up */
+.small { font-size: 14px; line-height: 20px; color: var(--muted); }
+.icon-sm { width: 16px; height: 16px; vertical-align: -3px; margin-right: var(--s1); }
+.pill { display: inline-block; font-size: 12px; line-height: 16px; font-weight: 600; padding: 2px var(--s2); border-radius: 9999px; background: color-mix(in srgb, var(--accent) 20%, transparent); color: var(--text); vertical-align: 2px; }
+.tonight { display: grid; grid-template-columns: 1.2fr 1fr; gap: var(--s4); align-items: start; }
+.tonight .clock { margin-bottom: var(--s4); }
+.tonight .clock div { flex: 1; min-width: 0; }
+.night-daily { display: block; }
+.night-daily .night-plan { margin-top: var(--s2); }
+.events h3, .ingame h3 { display: flex; align-items: center; gap: var(--s2); margin: 0 0 var(--s3); font-size: 18px; line-height: 28px; }
+.events h3 .icon, .ingame h3 .icon { color: var(--accent); }
+.event-list { display: grid; }
+.event { display: grid; grid-template-columns: 96px 1fr auto; gap: var(--s3); align-items: center; padding: var(--s3) 0; border-top: 1px solid var(--line); }
+.event:first-child { border-top: 0; }
+.event-when { font-weight: 600; font-size: 14px; line-height: 20px; color: var(--accent); }
+.event-name { font-weight: 600; color: var(--text) !important; margin: 0 !important; }
+.event .small { margin: 0 !important; }
+.event-go { display: grid; place-items: center; width: 40px; height: 40px; border-radius: 9999px; border: 1px solid var(--line); transition: background-color 500ms var(--ease), transform 500ms var(--ease); }
+.event-go:hover { background: rgba(255, 255, 255, 0.08); transform: translateY(-2px); }
+.event-empty p { margin: 0 !important; }
+.event-empty p + p { margin-top: var(--s1) !important; }
+.event-empty[hidden] { display: none; }
+@media (max-width: 860px) { .tonight { grid-template-columns: 1fr; } }
+
+/* members: shortcut buttons and the in game card */
+.members { display: grid; grid-template-columns: 1.6fr 1fr; gap: var(--s4); align-items: start; }
+.shortcuts { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--s3); }
+.shortcut { display: flex; align-items: center; gap: var(--s4); padding: var(--s4) var(--s5); text-decoration: none; height: 100%; }
+.shortcut:hover { transform: translateY(-2px); }
+.shortcut:active { transform: scale(0.98); }
+.shortcut > span { display: grid; gap: 2px; flex: 1; }
+.shortcut strong { font-weight: 600; }
+.shortcut .go { color: var(--muted); transition: transform 500ms var(--ease), color 500ms var(--ease); }
+.shortcut:hover .go { color: var(--text); transform: translate(2px, -2px); }
+.ingame h3 + .cmds { margin-bottom: var(--s5); }
+.cmds { display: grid; gap: var(--s2); margin-bottom: var(--s5); }
+.cmds li { display: flex; align-items: baseline; gap: var(--s3); font-size: 14px; line-height: 20px; color: var(--muted); }
+kbd { flex: none; min-width: 112px; font: 600 12px/16px ui-monospace, "SF Mono", Menlo, monospace; color: var(--text); background: rgba(255, 255, 255, 0.06); border: 1px solid var(--line); border-radius: 6px; padding: 2px var(--s2); }
+.addons { display: grid; gap: var(--s3); }
+.addons li { display: grid; gap: 2px; }
+.addons a { display: inline-flex; align-items: center; gap: var(--s1); text-decoration: none; font-weight: 600; width: max-content; }
+.addons a:hover { color: var(--accent); }
+@media (max-width: 1024px) { .members { grid-template-columns: 1fr; } }
+@media (max-width: 560px) { .shortcuts { grid-template-columns: 1fr; } }
+
+/* crafters */
+.crafters { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: var(--s3); }
+.crafter { display: grid; gap: var(--s1); text-decoration: none; height: 100%; }
+.crafter .tags { display: flex; flex-wrap: wrap; gap: var(--s1); margin-top: var(--s2); }
+.empty { display: flex; gap: var(--s4); align-items: flex-start; max-width: 768px; }
+.empty p { margin: 0 !important; }
+.empty p + p { margin-top: var(--s1) !important; }
+
+/* join: the steps beside the questions */
+.join { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s6); align-items: start; }
+.join .timeline { max-width: none; }
+@media (max-width: 860px) { .join { grid-template-columns: 1fr; } }
 
 /* faq */
 .faq { display: grid; gap: var(--s3); max-width: 768px; }

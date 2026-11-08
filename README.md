@@ -12,7 +12,8 @@ What every Guildhall site has:
 - **What members get**, **how to join** in three steps, a **gallery**, and an **FAQ** (also marked up for search engines).
 - **A living 3D backdrop**: a hand-painted Azeroth zone (Teldrassil, Darkshore or the Deadmines) rendered with three.js behind the whole page, drifting with your mouse and scroll. Pick your zones in `guild.json`, or turn it off.
 - **Motion that feels like a cinematic**: smooth scrolling ([Lenis](https://lenis.darkroom.engineering)), letters that rise into your guild's name, a ticking countdown, a gallery that slides sideways as you scroll down, a join timeline that draws itself, cards that tilt toward the cursor ([GSAP](https://gsap.com) + ScrollTrigger).
-- One clear button everywhere: join your Discord.
+- **For members, not just recruits**: tonight's Discord Events in everyone's own time, big shortcut buttons that open the right Discord channel (voice, group finder, guild chat), an in game card of commands and addons, and a **crafters list** built from your crafters forum. All of it updates itself.
+- One clear button for visitors: join your Discord.
 - Phone friendly, no cookies, no trackers, no build tools to install. People who ask their system for reduced motion get a calm, static page.
 
 ## Make one for your guild (about 10 minutes)
@@ -39,9 +40,25 @@ Every later edit to `guild.json` or `images/` publishes itself the same way.
 | `discord` | Your invite link, the channel where people apply, and the button text. |
 | `schedule` | Time zone ([IANA name](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones), e.g. `Europe/London`), its short label and how many hours a night runs. Then either `daily` (`{"start": "20:00", "plan": "…"}`, for guilds that ride every night) or `nights`, a list of set nights, each with its day, start time (24 hour) and plan. |
 | `tagline` | The big sentence that lights up word by word as you scroll. |
-| `perks`, `steps` | Cards with an icon, a title and a sentence. Icon names are the files in `src/icons/` (from [Phosphor](https://phosphoricons.com)); add any Phosphor icon there to use it. |
+| `steps` | How to join: cards with an icon, a title and a sentence. Icon names are the files in `src/icons/` (from [Phosphor](https://phosphoricons.com)); add any Phosphor icon there to use it. |
 | `leaders` | Name, role, race, class (coloured automatically), picture, a short bio and links. |
+| `discord.ids` | `server`, `category` (your guild's channel category) and `crafters` (the forum), for events, crafters and shortcut links. |
+| `shortcuts` | Buttons for members: icon, label, a short line, and the Discord `channel` id they open (or a `url`). |
+| `ingame` | `commands` (a command and what it does) and `addons` (name, link, one line). |
+| `perks`, `tagline` | Optional extra sections for recruiting: cards and a big sentence that lights up word by word. |
 | `gallery`, `faq`, `footer` | Pictures with alt text, questions and answers, and the small print. |
+
+## Tonight's events and the crafters list (optional)
+
+These come from your Discord through a bot that is already in your server (any bot that can see the guild's channels; no special intents).
+
+1. Put your server, guild category and crafters forum ids in `discord.ids` (in Discord: Settings, Advanced, Developer Mode, then right click and Copy ID).
+2. Give the site the bot's token one of two ways:
+   - **GitHub secret** (simplest): Settings → Secrets and variables → Actions → New secret named `DISCORD_BOT_TOKEN`. The build reads Discord every time it runs. Only use a bot whose token you're happy to keep in GitHub.
+   - **Your own computer**: run `DISCORD_BOT_TOKEN=... node fetch-discord.mjs` on a schedule and commit `data/discord.json` when it changes. The token never leaves your machine.
+3. Officers make Events in Discord in one of the guild's voice rooms; crafters post in the forum titled `Name · what they make`.
+
+Only public bits are written: event names, times, places and how many are going; crafter post titles and tags.
 
 ## Preview on your computer
 

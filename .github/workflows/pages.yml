@@ -26,6 +26,9 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 20
+      - run: node fetch-discord.mjs   # skips itself unless the DISCORD_BOT_TOKEN secret is set
+        env:
+          DISCORD_BOT_TOKEN: ${{ secrets.DISCORD_BOT_TOKEN }}
       - run: node build.mjs
       - uses: actions/upload-pages-artifact@v3
         with:

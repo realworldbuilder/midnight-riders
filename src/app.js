@@ -196,6 +196,29 @@
     document.querySelectorAll('[data-status]').forEach((el) => { if (el.textContent !== short) el.textContent = short; });
     document.querySelectorAll('[data-status-long]').forEach((el) => { if (long && el.textContent !== long) el.textContent = long; });
   }
+  // events: show each in the visitor's own time, drop the ones that have ended, say so when none are left
+  const dayFmt = new Intl.DateTimeFormat(undefined, { weekday: 'short' });
+  const evTime = new Intl.DateTimeFormat(undefined, { hour: 'numeric', minute: '2-digit' });
+  function events() {
+    const list = document.querySelector('[data-events]');
+    if (!list) return;
+    const now = Date.now(), today = new Date().toDateString(), tomorrow = new Date(now + 86400000).toDateString();
+    let shown = 0;
+    list.querySelectorAll('.event').forEach((li) => {
+      const over = Date.parse(li.dataset.end) < now;
+      li.hidden = over;
+      if (over) return;
+      shown++;
+      const el = li.querySelector('[data-when]'), at = new Date(el.getAttribute('datetime'));
+      const day = at.toDateString() === today ? 'Today' : at.toDateString() === tomorrow ? 'Tomorrow' : dayFmt.format(at);
+      el.textContent = `${day} ${evTime.format(at)}`;
+    });
+    const empty = list.querySelector('[data-empty]');
+    if (empty) empty.hidden = shown > 0;
+  }
+  events();
+  setInterval(events, 60000);
+
   tick();
   setInterval(tick, 1000);
 })();
