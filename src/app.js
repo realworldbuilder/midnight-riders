@@ -22,7 +22,8 @@
       document.querySelectorAll('a[href^="#"], a[href^="./#"]').forEach((a) => a.addEventListener('click', (e) => {
         const id = a.getAttribute('href').replace('./', '');
         const el = id.length > 1 && document.querySelector(id);
-        if (el) { e.preventDefault(); lenis.scrollTo(el, { offset: -88 }); }
+        // next frame: a menu link first closes the menu, which restarts the paused smooth scroll
+        if (el) { e.preventDefault(); requestAnimationFrame(() => lenis.scrollTo(el, { offset: -88 })); }
       }));
     }
 

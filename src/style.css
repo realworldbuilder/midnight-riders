@@ -57,6 +57,8 @@ ul, ol { list-style: none; margin: 0; padding: 0; }
 .burger[aria-expanded="true"] span:last-child { top: 19px; transform: rotate(-45deg); }
 .menu { position: fixed; inset: 0; z-index: 40; background: rgba(0, 0, 0, 0.8); backdrop-filter: blur(64px); -webkit-backdrop-filter: blur(64px); display: grid; place-items: center; opacity: 0; transition: opacity 700ms var(--ease); }
 .menu.open { opacity: 1; }
+.menu[hidden] { display: none; }
+.menu:not(.open) { pointer-events: none; }
 .menu ul { display: grid; gap: var(--s5); text-align: center; }
 .menu a:not(.btn) { font-size: 30px; line-height: 36px; font-weight: 600; text-decoration: none; }
 .menu li { opacity: 0; transform: translateY(48px); transition: opacity 700ms var(--ease), transform 700ms var(--ease); transition-delay: calc(100ms + var(--i) * 50ms); }
