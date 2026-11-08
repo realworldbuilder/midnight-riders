@@ -100,13 +100,27 @@ const splitTitle = (text) => text.split(' ').map((w) => `<span class="word">${[.
 
 const reveal = (html, tag = 'div', cls = '') => `<${tag} class="reveal ${cls}">${html}</${tag}>`;
 
+const WEEK = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+/** The schedule with `daily` (every night at one time) spelled out as seven nights, so the page script needs one shape. */
+function schedule() {
+  const s = g.schedule;
+  if (!s.daily) return { ...s, isDaily: false };
+  return { ...s, isDaily: true, nights: WEEK.map((day) => ({ day, start: s.daily.start, plan: s.daily.plan })) };
+}
+
 function page(counts) {
-  const sched = g.schedule;
+  const sched = schedule();
   const proof = counts
     ? `<p class="proof">${icon('users-three')}<span><strong data-count="${counts.members}">${counts.members.toLocaleString('en-US')}</strong> on the Discord · <span class="live-dot" aria-hidden="true"></span><strong data-count="${counts.online}">${counts.online.toLocaleString('en-US')}</strong> online now</span></p>`
     : `<p class="proof">${icon('moon-stars')}<span>${esc(g.faction)} · ${esc(g.realm.type)} · ${esc(g.realm.region)}</span></p>`;
 
-  const nights = sched.nights.map((n) => `
+  const nights = sched.isDaily ? `
+      <li class="card night night-daily reveal" data-day="*" data-start="${esc(sched.daily.start)}">
+        <p class="night-day">${icon('calendar-dots')}Every night</p>
+        <p class="night-time">${esc(fmt12(sched.daily.start))} ${esc(sched.zoneLabel)}</p>
+        <p class="night-local" data-local aria-live="polite"></p>
+        <p class="night-plan">${esc(sched.daily.plan)}</p>
+      </li>` : sched.nights.map((n) => `
       <li class="card night reveal" data-day="${esc(n.day)}" data-start="${esc(n.start)}">
         <p class="night-day">${icon('calendar-dots')}${esc(n.day)}</p>
         <p class="night-time">${esc(fmt12(n.start))} ${esc(sched.zoneLabel)}</p>
@@ -168,15 +182,15 @@ ${nav()}
   <section class="section wrap" id="nights" aria-labelledby="nights-h">
     <div class="section-head reveal">
       <h2 id="nights-h">Guild nights</h2>
-      <p class="status" data-status-long aria-live="polite">${esc(sched.nights.map((n) => n.day).join(', '))} from ${esc(fmt12(sched.nights[0].start))} ${esc(sched.zoneLabel)}</p>
+      <p class="status" data-status-long aria-live="polite">${sched.isDaily ? 'Every night' : esc(sched.nights.map((n) => n.day).join(', '))} from ${esc(fmt12(sched.nights[0].start))} ${esc(sched.zoneLabel)}</p>
     </div>
     <div class="clock reveal" data-clock aria-hidden="true">
-      <div><span data-u="d">00</span><small>days</small></div><b>:</b>
+      ${sched.isDaily ? '' : '<div><span data-u="d">00</span><small>days</small></div><b>:</b>'}
       <div><span data-u="h">00</span><small>hours</small></div><b>:</b>
       <div><span data-u="m">00</span><small>min</small></div><b>:</b>
       <div><span data-u="s">00</span><small>sec</small></div>
     </div>
-    <ul class="grid grid-3">${nights}
+    <ul class="grid ${sched.isDaily ? 'grid-1' : 'grid-3'}">${nights}
     </ul>
   </section>
 
@@ -273,7 +287,7 @@ ${nav('sub')}
 ${body}
 </main>
 ${footer()}
-<script>window.GUILD=${JSON.stringify({ schedule: g.schedule }).replace(/</g, '\\u003c')}</script>
+<script>window.GUILD=${JSON.stringify({ schedule: schedule() }).replace(/</g, '\\u003c')}</script>
 ${LIBS}
 <script src="assets/app.js" defer></script>
 </body>

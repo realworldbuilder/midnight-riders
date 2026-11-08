@@ -18,13 +18,13 @@
   "site": {
     "url": "https://realworldbuilder.github.io/midnight-riders/",
     "title": "<Midnight Riders> · Alliance guild in WoW: Forever",
-    "description": "An Alliance guild on a normal PvE realm in WoW: Forever. Guild nights Thursday, Friday and Saturday from 8pm ET. Any level welcome.",
+    "description": "An Alliance guild on a normal PvE realm in WoW: Forever. Guild night is every night from 8pm ET. Any level welcome.",
     "image": "images/og.jpg",
     "favicon": "images/favicon.png"
   },
   "hero": {
     "eyebrow": "Alliance guild · WoW: Forever · Normal PvE",
-    "lead": "Level together, gear up together and ride out three nights a week. New, returning and 2004 veterans all welcome.",
+    "lead": "Level together, gear up together and ride out every night from 8pm ET. New, returning and 2004 veterans all welcome.",
     "image": "images/hero.jpg",
     "alt": "Tyrande Whisperwind charging under a full moon on her white nightsaber, Rambleon on her left and Cassidy Darkstar on her right"
   },
@@ -37,31 +37,16 @@
     "timezone": "America/New_York",
     "zoneLabel": "ET",
     "hours": 4,
-    "nights": [
-      {
-        "day": "Thursday",
-        "start": "20:00",
-        "plan": "Dungeon groups and elite quests"
-      },
-      {
-        "day": "Friday",
-        "start": "20:00",
-        "plan": "Main event: group content and raids once we're ready"
-      },
-      {
-        "day": "Saturday",
-        "start": "20:00",
-        "plan": "Mount runs, catch up levelling, whatever the guild votes for"
-      }
-    ]
+    "daily": {
+      "start": "20:00",
+      "plan": "Dungeon groups, elite quests, mount runs, and raids once we're ready. Whoever is on rides out together."
+    }
   },
   "tagline": "Nobody levels alone here. Every guild night ends up in the chronicle, deaths included.",
   "marquee": [
     "Alliance",
     "Normal PvE",
-    "Thursday",
-    "Friday",
-    "Saturday",
+    "Every night",
     "8pm ET",
     "Any level",
     "WoW: Forever"
@@ -70,7 +55,7 @@
     {
       "icon": "users-three",
       "title": "Groups any night",
-      "text": "Post in the guild group finder and someone rides out with you, guild night or not."
+      "text": "Post in the guild group finder and someone rides out with you, any time of day."
     },
     {
       "icon": "hammer",
@@ -199,8 +184,8 @@
       "a": "Alliance on a normal PvE realm in the US region. Ask in Discord for the realm name before you roll."
     },
     {
-      "q": "Do I have to make every guild night?",
-      "a": "No. Come when you can. Guild nights are when the most people are on, not a sign in sheet."
+      "q": "Do I have to show up every night?",
+      "a": "No. Every night from 8pm ET is just when the most people are on. Come when you can."
     },
     {
       "q": "Do I need a microphone?",

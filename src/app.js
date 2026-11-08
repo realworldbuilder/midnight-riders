@@ -176,21 +176,23 @@
     if (clock) {
       const target = live ? live.t + len : next?.t;
       const left = Math.max(0, Math.floor(((target ?? now) - now) / 1000));
-      unit('d').textContent = pad(Math.floor(left / 86400));
-      unit('h').textContent = pad(Math.floor((left % 86400) / 3600));
+      const d = unit('d');
+      if (d) d.textContent = pad(Math.floor(left / 86400));
+      unit('h').textContent = pad(Math.floor((d ? left % 86400 : left) / 3600));
       unit('m').textContent = pad(Math.floor((left % 3600) / 60));
       unit('s').textContent = pad(left % 60);
       clock.classList.toggle('live', Boolean(live));
     }
     document.querySelectorAll('.night').forEach((card) => {
-      const upcoming = all.find((s) => s.night.day === card.dataset.day && s.t + len > now);
-      card.classList.toggle('live', Boolean(live && live.night.day === card.dataset.day));
+      const mineCard = (s) => card.dataset.day === '*' || s.night.day === card.dataset.day;
+      const upcoming = all.find((s) => mineCard(s) && s.t + len > now);
+      card.classList.toggle('live', Boolean(live && mineCard(live)));
       const out = card.querySelector('[data-local]');
-      const text = upcoming ? (mine === tz ? 'Same as your time' : `Your time: ${local.format(upcoming.t)}`) : '';
+      const text = upcoming ? (mine === tz ? 'Same as your time' : `Your time: ${(card.dataset.day === '*' ? clockFmt : local).format(upcoming.t)}`) : '';
       if (out && out.textContent !== text) out.textContent = text;
     });
     const short = live ? 'Riding now' : next ? `Next ride in ${span(next.t - now)}` : 'See guild nights';
-    const long = live ? `Riding now, until ${clockFmt.format(live.t + len)} your time. Join voice on Discord.` : next ? `Next ride: ${next.night.day}. Counting down` : '';
+    const long = live ? `Riding now, until ${clockFmt.format(live.t + len)} your time. Join voice on Discord.` : next ? (sched.isDaily ? 'Next ride: tonight. Counting down' : `Next ride: ${next.night.day}. Counting down`) : '';
     document.querySelectorAll('[data-status]').forEach((el) => { if (el.textContent !== short) el.textContent = short; });
     document.querySelectorAll('[data-status-long]').forEach((el) => { if (long && el.textContent !== long) el.textContent = long; });
   }

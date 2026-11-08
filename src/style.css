@@ -100,6 +100,7 @@ ul, ol { list-style: none; margin: 0; padding: 0; }
 .section-head p { color: var(--muted); }
 .status { color: var(--accent) !important; font-weight: 600; }
 .grid { display: grid; gap: var(--s4); }
+.grid-1 { grid-template-columns: 1fr; }
 .grid-2 { grid-template-columns: repeat(2, 1fr); }
 .grid-3 { grid-template-columns: repeat(3, 1fr); }
 @media (max-width: 860px) { .grid-2, .grid-3 { grid-template-columns: 1fr; } .section-head h2 { font-size: 36px; line-height: 40px; } }
@@ -121,6 +122,11 @@ ul, ol { list-style: none; margin: 0; padding: 0; }
 .night-day { display: flex; align-items: center; gap: var(--s2); color: var(--text) !important; font-weight: 600; margin-top: 0 !important; }
 .night-time { font: 600 30px/36px "Manrope", sans-serif; color: var(--text) !important; margin-top: var(--s3) !important; }
 .night-local { font-size: 14px; line-height: 20px; min-height: 20px; }
+.night-daily { display: grid; grid-template-columns: auto auto 1fr; align-items: center; column-gap: var(--s6); row-gap: var(--s1); }
+.night-daily .night-day { grid-column: 1 / -1; }
+.night-daily .night-time { margin-top: 0 !important; }
+.night-daily .night-plan { grid-column: 3; grid-row: 2 / span 2; margin-top: 0; max-width: 480px; justify-self: end; text-align: right; }
+@media (max-width: 860px) { .night-daily { display: block; } .night-daily .night-plan { text-align: left; margin-top: var(--s2); } }
 .night.live { border-color: var(--accent); box-shadow: 0 0 48px color-mix(in srgb, var(--accent) 28%, transparent); }
 .night.live .night-day::after { content: "Riding now"; margin-left: auto; font-size: 12px; line-height: 16px; color: var(--bg); background: var(--accent); padding: 2px var(--s2); border-radius: 9999px; }
 

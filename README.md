@@ -37,7 +37,7 @@ Every later edit to `guild.json` or `images/` publishes itself the same way.
 | `site` | Address, page title, description and share picture. |
 | `hero` | The line above the title, the sentence under it, and the big picture. |
 | `discord` | Your invite link, the channel where people apply, and the button text. |
-| `schedule` | Time zone ([IANA name](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones), e.g. `Europe/London`), its short label, how many hours a night runs, and each night's day, start time (24 hour) and plan. |
+| `schedule` | Time zone ([IANA name](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones), e.g. `Europe/London`), its short label and how many hours a night runs. Then either `daily` (`{"start": "20:00", "plan": "…"}`, for guilds that ride every night) or `nights`, a list of set nights, each with its day, start time (24 hour) and plan. |
 | `tagline` | The big sentence that lights up word by word as you scroll. |
 | `perks`, `steps` | Cards with an icon, a title and a sentence. Icon names are the files in `src/icons/` (from [Phosphor](https://phosphoricons.com)); add any Phosphor icon there to use it. |
 | `leaders` | Name, role, race, class (coloured automatically), picture, a short bio and links. |
