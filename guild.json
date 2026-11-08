@@ -3,9 +3,18 @@
   "tag": "<Midnight Riders>",
   "game": "WoW: Forever",
   "faction": "Alliance",
-  "realm": { "type": "Normal (PvE)", "name": "", "region": "US" },
+  "realm": {
+    "type": "Normal (PvE)",
+    "name": "",
+    "region": "US"
+  },
   "accent": "#8C9BFF",
-
+  "backdrop": {
+    "zones": [
+      "darkshore",
+      "teldrassil"
+    ]
+  },
   "site": {
     "url": "https://realworldbuilder.github.io/midnight-riders/",
     "title": "<Midnight Riders> · Alliance guild in WoW: Forever",
@@ -13,87 +22,203 @@
     "image": "images/og.jpg",
     "favicon": "images/favicon.png"
   },
-
   "hero": {
     "eyebrow": "Alliance guild · WoW: Forever · Normal PvE",
     "lead": "Level together, gear up together and ride out three nights a week. New, returning and 2004 veterans all welcome.",
     "image": "images/hero.jpg",
     "alt": "Tyrande Whisperwind charging under a full moon on her white nightsaber, Rambleon on her left and Cassidy Darkstar on her right"
   },
-
   "discord": {
     "invite": "https://discord.gg/9wTKXsC6P3",
     "applyChannel": "#join-midnight-riders",
     "cta": "Apply on Discord"
   },
-
   "schedule": {
     "timezone": "America/New_York",
     "zoneLabel": "ET",
     "hours": 4,
     "nights": [
-      { "day": "Thursday", "start": "20:00", "plan": "Dungeon groups and elite quests" },
-      { "day": "Friday", "start": "20:00", "plan": "Main event: group content and raids once we're ready" },
-      { "day": "Saturday", "start": "20:00", "plan": "Mount runs, catch up levelling, whatever the guild votes for" }
+      {
+        "day": "Thursday",
+        "start": "20:00",
+        "plan": "Dungeon groups and elite quests"
+      },
+      {
+        "day": "Friday",
+        "start": "20:00",
+        "plan": "Main event: group content and raids once we're ready"
+      },
+      {
+        "day": "Saturday",
+        "start": "20:00",
+        "plan": "Mount runs, catch up levelling, whatever the guild votes for"
+      }
     ]
   },
-
   "tagline": "Nobody levels alone here. Every guild night ends up in the chronicle, deaths included.",
-
-  "perks": [
-    { "icon": "users-three", "title": "Groups any night", "text": "Post in the guild group finder and someone rides out with you, guild night or not." },
-    { "icon": "hammer", "title": "Crafters and a guild bank", "text": "A board of who makes what. Ask for a craft or a bank item and an officer sorts it." },
-    { "icon": "chats-circle", "title": "Guild chat on your phone", "text": "In game guild chat is linked to our Discord, so you can talk to whoever is online from anywhere." },
-    { "icon": "book-open-text", "title": "The chronicle", "text": "Each guild night gets written up the morning after, like a chapter of a story you were in." },
-    { "icon": "skull", "title": "Fallen riders", "text": "A channel just for how you died. The dumber the death, the better the reactions." },
-    { "icon": "sword", "title": "Raids when we're ready", "text": "We gear up as a guild and go in together when the roster is there." }
+  "marquee": [
+    "Alliance",
+    "Normal PvE",
+    "Thursday",
+    "Friday",
+    "Saturday",
+    "8pm ET",
+    "Any level",
+    "WoW: Forever"
   ],
-
-  "leaders": [
+  "perks": [
     {
-      "name": "Rambleon", "role": "Guild Master", "race": "Night Elf", "class": "Hunter",
-      "image": "images/rambleon.jpg", "alt": "Rambleon grinning in his spiked silver helm",
-      "bio": "Runs the guild and the WoW Forever Guide. Asks too many questions in guild chat and takes the screenshots.",
-      "links": [{ "icon": "instagram-logo", "label": "Instagram", "url": "https://www.instagram.com/wowforeverguide/" }]
+      "icon": "users-three",
+      "title": "Groups any night",
+      "text": "Post in the guild group finder and someone rides out with you, guild night or not."
     },
     {
-      "name": "Cassidy Darkstar", "role": "Officer", "race": "Night Elf", "class": "Druid",
-      "image": "images/cassidy-darkstar.jpg", "alt": "Cassidy Darkstar in his purple hood with a crystal staff, riding a black nightsaber",
+      "icon": "hammer",
+      "title": "Crafters and a guild bank",
+      "text": "A board of who makes what. Ask for a craft or a bank item and an officer sorts it."
+    },
+    {
+      "icon": "chats-circle",
+      "title": "Guild chat on your phone",
+      "text": "In game guild chat is linked to our Discord, so you can talk to whoever is online from anywhere."
+    },
+    {
+      "icon": "book-open-text",
+      "title": "The chronicle",
+      "text": "Each guild night gets written up the morning after, like a chapter of a story you were in."
+    },
+    {
+      "icon": "skull",
+      "title": "Fallen riders",
+      "text": "A channel just for how you died. The dumber the death, the better the reactions."
+    },
+    {
+      "icon": "sword",
+      "title": "Raids when we're ready",
+      "text": "We gear up as a guild and go in together when the roster is there."
+    }
+  ],
+  "leaders": [
+    {
+      "name": "Rambleon",
+      "role": "Guild Master",
+      "race": "Night Elf",
+      "class": "Hunter",
+      "image": "images/rambleon.jpg",
+      "alt": "Rambleon grinning in his spiked silver helm",
+      "bio": "Runs the guild and the WoW Forever Guide. Asks too many questions in guild chat and takes the screenshots.",
+      "links": [
+        {
+          "icon": "instagram-logo",
+          "label": "Instagram",
+          "url": "https://www.instagram.com/wowforeverguide/"
+        }
+      ]
+    },
+    {
+      "name": "Cassidy Darkstar",
+      "role": "Officer",
+      "race": "Night Elf",
+      "class": "Druid",
+      "image": "images/cassidy-darkstar.jpg",
+      "alt": "Cassidy Darkstar in his purple hood with a crystal staff, riding a black nightsaber",
       "bio": "Climbing to 60 on stream with a clip from every session, and writing druid guides on YouTube.",
       "links": [
-        { "icon": "twitch-logo", "label": "Twitch", "url": "https://www.twitch.tv/cassidydarkstar10" },
-        { "icon": "instagram-logo", "label": "Instagram", "url": "https://www.instagram.com/cassidydarkstar/" },
-        { "icon": "x-logo", "label": "X", "url": "https://x.com/CassidyDarkstar" }
+        {
+          "icon": "twitch-logo",
+          "label": "Twitch",
+          "url": "https://www.twitch.tv/cassidydarkstar10"
+        },
+        {
+          "icon": "instagram-logo",
+          "label": "Instagram",
+          "url": "https://www.instagram.com/cassidydarkstar/"
+        },
+        {
+          "icon": "x-logo",
+          "label": "X",
+          "url": "https://x.com/CassidyDarkstar"
+        }
       ]
     }
   ],
-
   "steps": [
-    { "icon": "discord-logo", "title": "Join the Discord", "text": "Anyone can join, any faction. Say hi and look around." },
-    { "icon": "scroll", "title": "Press Apply", "text": "In #join-midnight-riders: your realm type, your faction and the character to invite. It takes 30 seconds." },
-    { "icon": "user-plus", "title": "Get your invite", "text": "An officer sends the guild invite in game and the guild channels open up for you." }
+    {
+      "icon": "discord-logo",
+      "title": "Join the Discord",
+      "text": "Anyone can join, any faction. Say hi and look around."
+    },
+    {
+      "icon": "scroll",
+      "title": "Press Apply",
+      "text": "In #join-midnight-riders: your realm type, your faction and the character to invite. It takes 30 seconds."
+    },
+    {
+      "icon": "user-plus",
+      "title": "Get your invite",
+      "text": "An officer sends the guild invite in game and the guild channels open up for you."
+    }
   ],
-
   "gallery": [
-    { "image": "images/gallery-ridge.jpg", "alt": "Three riders on a cliff above Darkshore under a huge moon" },
-    { "image": "images/gallery-banner.jpg", "alt": "The guild banner, a silver crescent and a leaping nightsaber, in a moonlit glade" },
-    { "image": "images/gallery-campfire.jpg", "alt": "Rambleon telling a story at the campfire while the nightsabers sleep" },
-    { "image": "images/gallery-column.jpg", "alt": "A long column of guildmates on all kinds of mounts riding through Ashenvale" },
-    { "image": "images/gallery-moonwell.jpg", "alt": "Three riders joining hands over a glowing moonwell" },
-    { "image": "images/gallery-saddle.jpg", "alt": "A saddled nightsaber with no rider waiting for you" },
-    { "image": "images/gallery-selfie.jpg", "alt": "Rambleon's selfie with Tyrande and Cassidy Darkstar" }
+    {
+      "image": "images/gallery-ridge.jpg",
+      "alt": "Three riders on a cliff above Darkshore under a huge moon"
+    },
+    {
+      "image": "images/gallery-banner.jpg",
+      "alt": "The guild banner, a silver crescent and a leaping nightsaber, in a moonlit glade"
+    },
+    {
+      "image": "images/gallery-campfire.jpg",
+      "alt": "Rambleon telling a story at the campfire while the nightsabers sleep"
+    },
+    {
+      "image": "images/gallery-column.jpg",
+      "alt": "A long column of guildmates on all kinds of mounts riding through Ashenvale"
+    },
+    {
+      "image": "images/gallery-moonwell.jpg",
+      "alt": "Three riders joining hands over a glowing moonwell"
+    },
+    {
+      "image": "images/gallery-saddle.jpg",
+      "alt": "A saddled nightsaber with no rider waiting for you"
+    },
+    {
+      "image": "images/gallery-selfie.jpg",
+      "alt": "Rambleon's selfie with Tyrande and Cassidy Darkstar"
+    }
   ],
-
   "faq": [
-    { "q": "Do I need to be max level?", "a": "No. Any level is welcome, and most of us are still levelling. Guild nights mix dungeons, quests and runs for every level range." },
-    { "q": "Which realm and faction?", "a": "Alliance on a normal PvE realm in the US region. Ask in Discord for the realm name before you roll." },
-    { "q": "Do I have to make every guild night?", "a": "No. Come when you can. Guild nights are when the most people are on, not a sign in sheet." },
-    { "q": "Do I need a microphone?", "a": "No. Voice is open on guild nights and listening is fine. Text works too." },
-    { "q": "How long does joining take?", "a": "The form takes about 30 seconds. An officer usually sends the invite the next time they're online." },
-    { "q": "My friend plays Horde. Can they hang out?", "a": "Yes, on the Discord. The guild itself is Alliance only, but the server is open to everyone." },
-    { "q": "Is this an official Blizzard site?", "a": "No. It's a fan made guild page. World of Warcraft belongs to Blizzard Entertainment." }
+    {
+      "q": "Do I need to be max level?",
+      "a": "No. Any level is welcome, and most of us are still levelling. Guild nights mix dungeons, quests and runs for every level range."
+    },
+    {
+      "q": "Which realm and faction?",
+      "a": "Alliance on a normal PvE realm in the US region. Ask in Discord for the realm name before you roll."
+    },
+    {
+      "q": "Do I have to make every guild night?",
+      "a": "No. Come when you can. Guild nights are when the most people are on, not a sign in sheet."
+    },
+    {
+      "q": "Do I need a microphone?",
+      "a": "No. Voice is open on guild nights and listening is fine. Text works too."
+    },
+    {
+      "q": "How long does joining take?",
+      "a": "The form takes about 30 seconds. An officer usually sends the invite the next time they're online."
+    },
+    {
+      "q": "My friend plays Horde. Can they hang out?",
+      "a": "Yes, on the Discord. The guild itself is Alliance only, but the server is open to everyone."
+    },
+    {
+      "q": "Is this an official Blizzard site?",
+      "a": "No. It's a fan made guild page. World of Warcraft belongs to Blizzard Entertainment."
+    }
   ],
-
   "footer": {
     "note": "Fan made guild page. World of Warcraft and WoW are trademarks of Blizzard Entertainment, Inc. Art made by the guild from game characters."
   }

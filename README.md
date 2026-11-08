@@ -10,8 +10,10 @@ What every Guildhall site has:
 - **Live Discord numbers** (members and online now), refreshed four times a day. No bot needed, just your invite link.
 - **Leaders** with class colours and links to their streams and socials.
 - **What members get**, **how to join** in three steps, a **gallery**, and an **FAQ** (also marked up for search engines).
+- **A living 3D backdrop**: a hand-painted Azeroth zone (Teldrassil, Darkshore or the Deadmines) rendered with three.js behind the whole page, drifting with your mouse and scroll. Pick your zones in `guild.json`, or turn it off.
+- **Motion that feels like a cinematic**: smooth scrolling ([Lenis](https://lenis.darkroom.engineering)), letters that rise into your guild's name, a ticking countdown, a gallery that slides sideways as you scroll down, a join timeline that draws itself, cards that tilt toward the cursor ([GSAP](https://gsap.com) + ScrollTrigger).
 - One clear button everywhere: join your Discord.
-- Phone friendly, fast, no cookies, no trackers, no build tools to install.
+- Phone friendly, no cookies, no trackers, no build tools to install. People who ask their system for reduced motion get a calm, static page.
 
 ## Make one for your guild (about 10 minutes)
 
@@ -30,6 +32,8 @@ Every later edit to `guild.json` or `images/` publishes itself the same way.
 | `name`, `tag` | Your guild's name, and how it is written in game (`<Midnight Riders>`). |
 | `faction`, `realm` | Shown in the hero and the join section. Leave `realm.name` empty if you'd rather say it on Discord. |
 | `accent` | One colour for icons and highlights, as a hex code. |
+| `backdrop` | `{"zones": ["darkshore", "teldrassil"]}` picks the 3D zones (any of `teldrassil`, `darkshore`, `deadmines`); `false` turns the backdrop off. |
+| `marquee` | Short words for the band that slides under the hero. |
 | `site` | Address, page title, description and share picture. |
 | `hero` | The line above the title, the sentence under it, and the big picture. |
 | `discord` | Your invite link, the channel where people apply, and the button text. |
@@ -54,6 +58,8 @@ npx serve dist          # or any static server, then open the address it prints
 
 - Code: MIT (see `LICENSE`).
 - Fonts: [Manrope](https://github.com/googlefonts/manrope) and [Cinzel](https://github.com/NDISCOVER/Cinzel), both SIL Open Font License, in `src/fonts/`.
+- The 3D backdrop (`src/azeroth.js`): MIT, first made for [willhsu.dev](https://willhsu.dev). It loads three.js from cdnjs.
+- GSAP and ScrollTrigger (free [GSAP licence](https://gsap.com/standard-license)) and Lenis (MIT) load from jsDelivr.
 - Icons: [Phosphor](https://github.com/phosphor-icons/core), MIT, in `src/icons/`.
 - The example pictures in `images/` belong to <Midnight Riders>. Please replace them with your own.
 
