@@ -267,3 +267,31 @@ kbd { flex: none; min-width: 112px; font: 600 12px/16px ui-monospace, "SF Mono",
   *, *::before, *::after { transition-duration: 1ms !important; animation: none !important; }
   .js .reveal { opacity: 1; transform: none; filter: none; }
 }
+
+/* gift guide: each gift is an item tooltip, its price band is its quality colour */
+.simple.gifts { max-width: none; }
+.simple.gifts > .eyebrow { justify-self: start; }
+.simple.gifts > .hero-title, .simple.gifts > .hero-lead { max-width: 760px; }
+.q-uncommon { --q: #1EFF00; } .q-rare { --q: #2B8CFF; } .q-epic { --q: #B66BFF; } .q-legendary { --q: #FF8000; }
+.jump { display: flex; flex-wrap: wrap; gap: var(--s2); }
+.jump-chip { color: var(--q); font-size: 14px; line-height: 20px; font-weight: 600; text-decoration: none; padding: var(--s1) var(--s3); border-radius: 9999px; border: 1px solid color-mix(in srgb, var(--q) 40%, transparent); background: color-mix(in srgb, var(--q) 8%, transparent); }
+.simple.gifts p.gifts-note { font-size: 14px; line-height: 20px; max-width: 760px; }
+.loot { margin-top: var(--s6); }
+.loot-head { font: 700 36px/1.1 "Cinzel", serif; margin-bottom: var(--s4); display: flex; flex-wrap: wrap; align-items: baseline; gap: var(--s2) var(--s3); }
+.loot-head > span { color: var(--q); }
+.loot-head small { font: 500 16px/24px "Manrope", sans-serif; color: var(--muted); }
+.tips { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr)); gap: var(--s4); }
+.tip { display: flex; flex-direction: column; gap: 2px; padding: var(--s3) var(--s4) var(--s4); font-size: 15px; line-height: 21px;
+  background: linear-gradient(rgba(10, 12, 38, 0.94), rgba(4, 6, 22, 0.94)); border: 1px solid rgba(255, 255, 255, 0.34); border-radius: 6px;
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.7), 0 12px 32px rgba(0, 0, 0, 0.45); }
+.tip-name { color: var(--q); font-size: 17px; line-height: 23px; font-weight: 700; }
+.tip-bind, .tip-slot { color: #FFFFFF; }
+.tip-slot { display: flex; justify-content: space-between; gap: var(--s3); }
+.tip-slot span:last-child { color: #C9C9C9; }
+.tip-use { color: #1EFF00; }
+.simple.gifts .tip p.tip-why { color: #FFD100; margin: var(--s1) 0 2px; }
+.tip-for { color: var(--muted); font-size: 13px; line-height: 18px; }
+.tip-go { margin-top: var(--s3); align-self: flex-start; display: inline-flex; align-items: center; gap: var(--s1); color: var(--q); font-weight: 600; text-decoration: none; border-bottom: 1px solid color-mix(in srgb, var(--q) 45%, transparent); }
+.tip-go .icon { width: 16px; height: 16px; }
+.tip-go:hover { border-bottom-color: var(--q); }
+@media (max-width: 860px) { .loot-head { font-size: 30px; } }

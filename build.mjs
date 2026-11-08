@@ -13,6 +13,7 @@ import { fileURLToPath } from 'node:url';
 const ROOT = dirname(fileURLToPath(import.meta.url));
 const OUT = join(ROOT, 'dist');
 const g = JSON.parse(readFileSync(join(ROOT, 'guild.json'), 'utf8'));
+const gifts = existsSync(join(ROOT, 'gifts.json')) ? JSON.parse(readFileSync(join(ROOT, 'gifts.json'), 'utf8')) : null;
 const offline = process.argv.includes('--offline');
 
 const esc = (s = '') => String(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]);
@@ -87,6 +88,7 @@ function footer() {
     <p class="footer-brand">${esc(g.tag)} <button class="zone" type="button" data-zone hidden title="Next zone"></button></p>
     <ul class="footer-links">
       <li><a href="${esc(g.discord.invite)}" rel="noopener">Discord</a></li>
+      ${gifts ? '<li><a href="gifts/">Gift guide</a></li>' : ''}
       <li><a href="privacy.html">Privacy</a></li>
       <li><a href="https://github.com/realworldbuilder/guildhall" rel="noopener">Made with Guildhall</a></li>
     </ul>
@@ -319,19 +321,21 @@ function backdrop() {
 </script>`;
 }
 
-function simplePage({ title, path, body }) {
+function simplePage({ title, path, body, cls = '', description, index = false }) {
   // 404.html is served at any missing address, however deep, so its links resolve from the site's root.
-  const base = path === '404.html' && g.site.url ? `<base href="${esc(g.site.url)}">\n` : '';
+  // A page in a folder (gifts/index.html) gets a relative base, so assets/ and ./ resolve from the root.
+  const depth = path.split('/').length - 1;
+  const base = path === '404.html' && g.site.url ? `<base href="${esc(g.site.url)}">\n` : depth ? `<base href="${'../'.repeat(depth)}">\n` : '';
   return `<!doctype html>
 <html lang="en">
 <head>
-${base}${head({ title: `${title} · ${g.tag}`, description: g.site.description, path })}
-<meta name="robots" content="noindex">
+${base}${head({ title: `${title} · ${g.tag}`, description: description ?? g.site.description, path: path.replace(/index\.html$/, '') })}
+${index ? '' : '<meta name="robots" content="noindex">'}
 </head>
 <body>
 ${backdrop()}
 ${nav('sub')}
-<main id="main" class="wrap simple">
+<main id="main" class="wrap simple ${cls}">
 ${body}
 </main>
 ${footer()}
@@ -346,6 +350,46 @@ ${LIBS}
 function fmt12(hhmm) {
   const [h, m] = hhmm.split(':').map(Number);
   return `${((h + 11) % 12) + 1}${m ? `:${String(m).padStart(2, '0')}` : ''}${h < 12 ? 'am' : 'pm'}`;
+}
+
+/** Optional gift guide from gifts.json: each gift drawn as an item tooltip, its price band as its quality colour.
+ *  amazon_tag / ebay_campid empty = plain links and no affiliate line. */
+function giftsPage() {
+  const tag = gifts.amazon_tag ?? '', camp = gifts.ebay_campid ?? '';
+  const q = (s) => encodeURIComponent(s).replace(/%20/g, '+');
+  const url = (x) => x.url ?? (x.store === 'ebay'
+    ? `https://www.ebay.com/sch/i.html?_nkw=${q(x.q)}${camp ? `&mkcid=1&mkrid=711-53200-19255-0&campid=${camp}&toolid=10001&mkevt=1` : ''}`
+    : `https://www.amazon.com/s?k=${q(x.q)}${tag ? `&tag=${tag}` : ''}`);
+  const STORE = { amazon: 'Find it on Amazon', etsy: 'See the caps on Etsy', ebay: 'Find it on eBay' };
+  const tip = (x, t) => {
+    const paid = (x.store === 'amazon' && tag) || (x.store === 'ebay' && camp);
+    return `<li class="tip q-${t.key}"><b class="tip-name">${esc(x.name)}</b>
+<span class="tip-bind">${x.ours ? 'Made by the guild' : 'Binds when gifted'}</span>
+<span class="tip-slot"><span>${esc(x.slot)}</span><span>${esc(t.band)}</span></span>
+<span class="tip-use">Use: ${esc(x.use)}</span>
+<p class="tip-why">"${esc(x.why)}"</p>
+<span class="tip-for">For: ${esc(x.for.join(', '))}</span>
+<a class="tip-go" href="${esc(url(x))}" rel="${paid ? 'sponsored noopener' : 'noopener'}" target="_blank">${STORE[x.store]}${icon('arrow-up-right')}</a></li>`;
+  };
+  const note = [gifts.note, tag && 'As an Amazon Associate we earn from qualifying purchases.', camp && 'eBay links are affiliate links too.'].filter(Boolean).join(' ');
+  const tiers = gifts.tiers.map((t) => `<section class="loot" id="${t.key}">
+<h2 class="loot-head"><span class="q-${t.key}">${esc(t.label)}</span> <small>${esc(t.band)} · ${esc(t.blurb)}</small></h2>
+<ul class="tips">${gifts.gifts.filter((x) => x.tier === t.key).map((x) => tip(x, t)).join('')}</ul></section>`).join('');
+  const jump = gifts.tiers.map((t) => `<a class="jump-chip q-${t.key}" href="gifts/#${t.key}">${esc(t.label)} · ${esc(t.band)}</a>`).join('');
+  return simplePage({
+    title: gifts.title,
+    path: 'gifts/index.html',
+    description: gifts.lede,
+    index: true,
+    cls: 'gifts',
+    body: `<p class="eyebrow">Gift guide</p>
+<h1 class="hero-title">${esc(gifts.title)}</h1>
+<p class="hero-lead">${esc(gifts.lede)}</p>
+<p class="jump">${jump}</p>
+<p class="gifts-note">${esc(note)}</p>
+${tiers}
+<p><a class="btn btn-ghost" href="./">${icon('arrow-right')}Back to ${esc(g.tag)}</a></p>`,
+  });
 }
 
 const counts = await discordCounts();
@@ -374,5 +418,9 @@ writeFileSync(join(OUT, 'privacy.html'), simplePage({
 <p>Applying to the guild happens on Discord, so anything you send there is covered by Discord's terms and seen by the guild's officers.</p>
 <p><a class="btn btn-ghost" href="./">${icon('arrow-right')}Back to ${esc(g.tag)}</a></p>`,
 }));
+if (gifts) {
+  mkdirSync(join(OUT, 'gifts'), { recursive: true });
+  writeFileSync(join(OUT, 'gifts', 'index.html'), giftsPage());
+}
 writeFileSync(join(OUT, '.nojekyll'), '');
 console.log(`built dist/ for ${g.tag}${counts ? ` (${counts.members} members, ${counts.online} online)` : ''}: ${readdirSync(OUT).join(', ')}`);

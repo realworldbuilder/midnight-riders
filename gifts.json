@@ -1,0 +1,238 @@
+{
+  "title": "Gifts for a WoW player",
+  "lede": "Picked by the guild for someone about to lose their evenings to WoW: Forever. Sorted by item quality: green is under $25, legendary is the one they'll tell guild chat about.",
+  "checked": "2026-11-08",
+  "amazon_tag": "",
+  "ebay_campid": "",
+  "note": "Prices move, so we show a range, not a number. Most links open an Amazon search, not one listing, so you can pick the seller and the edition you want.",
+  "tiers": [
+    {
+      "key": "uncommon",
+      "label": "Uncommon",
+      "band": "under $25",
+      "blurb": "Stocking fillers and Secret Santa."
+    },
+    {
+      "key": "rare",
+      "label": "Rare",
+      "band": "$25 to $60",
+      "blurb": "A proper present."
+    },
+    {
+      "key": "epic",
+      "label": "Epic",
+      "band": "$60 to $150",
+      "blurb": "Birthday or Christmas, from someone who listens."
+    },
+    {
+      "key": "legendary",
+      "label": "Legendary",
+      "band": "$150 and up",
+      "blurb": "The desk upgrade."
+    }
+  ],
+  "gifts": [
+    {
+      "tier": "uncommon",
+      "name": "Blizzard gift card",
+      "slot": "Game time",
+      "for": [
+        "anyone who plays"
+      ],
+      "use": "Adds Battle.net balance for the subscription, a mount or a name change.",
+      "why": "It's the dull choice, and it's the one they'll use. Get the digital code and it can go in a card the night before.",
+      "store": "amazon",
+      "q": "Blizzard Battle.net gift card digital code"
+    },
+    {
+      "tier": "uncommon",
+      "name": "Arthas: Rise of the Lich King",
+      "slot": "Book",
+      "for": [
+        "reads the quest text"
+      ],
+      "use": "Explains why everyone in Northrend is so upset.",
+      "why": "Christie Golden's novel is the best of the Warcraft books and it's in paperback. Forever's road runs toward Naxxramas, so it's the right one to read this year.",
+      "store": "amazon",
+      "q": "Arthas Rise of the Lich King Christie Golden paperback"
+    },
+    {
+      "tier": "uncommon",
+      "name": "A World of Warcraft Funko Pop",
+      "slot": "Desk",
+      "for": [
+        "collector"
+      ],
+      "use": "Watches over the keyboard during raid night.",
+      "why": "There are Pops of Arthas, Illidan, Sylvanas and others. Ask which faction first. Get it wrong and it's a talking point all evening.",
+      "store": "amazon",
+      "q": "Funko Pop World of Warcraft"
+    },
+    {
+      "tier": "uncommon",
+      "name": "Folk & Fairy Tales of Azeroth",
+      "slot": "Book",
+      "for": [
+        "reads the quest text",
+        "the kids"
+      ],
+      "use": "Bedtime stories told the way people in Azeroth tell them.",
+      "why": "A short illustrated hardback. Works for a player with kids or a kid who plays.",
+      "store": "amazon",
+      "q": "World of Warcraft Folk and Fairy Tales of Azeroth"
+    },
+    {
+      "tier": "uncommon",
+      "name": "An extended desk mat",
+      "slot": "Desk",
+      "for": [
+        "new player",
+        "raider"
+      ],
+      "use": "Your mouse stops falling off the edge in the middle of a fight.",
+      "why": "A plain one that covers the whole desk is the cheapest real upgrade there is. Skip the RGB.",
+      "store": "amazon",
+      "q": "extended desk mat large mouse pad stitched edges"
+    },
+    {
+      "tier": "rare",
+      "name": "World of Warcraft: The Official Cookbook",
+      "slot": "Book",
+      "for": [
+        "cooks",
+        "collector"
+      ],
+      "use": "Teaches the recipes from the game, worked out for a real kitchen.",
+      "why": "Chelsea Monroe-Cassel's cookbook is the gift that gets used on raid night. Spiced Wolf Meat for real.",
+      "store": "amazon",
+      "q": "World of Warcraft The Official Cookbook Monroe-Cassel"
+    },
+    {
+      "tier": "rare",
+      "name": "Exploring Azeroth: The Eastern Kingdoms",
+      "slot": "Book",
+      "for": [
+        "reads the quest text",
+        "new player"
+      ],
+      "use": "A guided tour of the zones Forever starts in.",
+      "why": "Westfall, Duskwood and Stranglethorn, written as a travel book. There's a Kalimdor volume for Horde players.",
+      "store": "amazon",
+      "q": "World of Warcraft Exploring Azeroth Eastern Kingdoms"
+    },
+    {
+      "tier": "rare",
+      "name": "World of Warcraft Chronicle, Volume 1",
+      "slot": "Book",
+      "for": [
+        "reads the quest text",
+        "collector"
+      ],
+      "use": "Twenty thousand years of backstory, with art on every page.",
+      "why": "Blizzard's own history of the world, as a big hardback. If they love it, volumes 2 and 3 are next year's presents.",
+      "store": "amazon",
+      "q": "World of Warcraft Chronicle Volume 1 hardcover"
+    },
+    {
+      "tier": "rare",
+      "name": "A ForTheGuild class cap",
+      "slot": "Head",
+      "for": [
+        "anyone who plays"
+      ],
+      "ours": true,
+      "use": "Lets everyone know you main a warrior, rogue, druid or hunter.",
+      "why": "Made by our guild master: rope caps with original class art, made in Los Angeles, $39 in seven colours.",
+      "store": "etsy",
+      "url": "https://fortheguild.etsy.com"
+    },
+    {
+      "tier": "rare",
+      "name": "The 2004 BradyGames strategy guide",
+      "slot": "Book",
+      "for": [
+        "collector",
+        "played in 2004"
+      ],
+      "use": "The book every 2004 player had open next to the keyboard.",
+      "why": "It's out of print, but used copies come up on eBay all the time. Check it has the map poster inside.",
+      "store": "ebay",
+      "q": "World of Warcraft BradyGames official strategy guide 2004"
+    },
+    {
+      "tier": "epic",
+      "name": "World of Warcraft: Wrath of the Lich King, the board game",
+      "slot": "Table",
+      "for": [
+        "plays with friends"
+      ],
+      "use": "Two to four players take on the Lich King together.",
+      "why": "Z-Man's co-op game, built on the Pandemic system. Good for a player and a partner who doesn't play WoW.",
+      "store": "amazon",
+      "q": "World of Warcraft Wrath of the Lich King board game Z-Man"
+    },
+    {
+      "tier": "epic",
+      "name": "An MMO mouse",
+      "slot": "Hands",
+      "for": [
+        "raider",
+        "new player"
+      ],
+      "use": "Puts twelve keybinds under your thumb.",
+      "why": "The Razer Naga and the Corsair Scimitar are the usual picks. They're the biggest comfort upgrade for a game with forty buttons.",
+      "store": "amazon",
+      "q": "MMO gaming mouse 12 side buttons Razer Naga Corsair Scimitar"
+    },
+    {
+      "tier": "epic",
+      "name": "A headset with a good mic",
+      "slot": "Head",
+      "for": [
+        "raider"
+      ],
+      "use": "The raid leader can hear your callouts, and nobody else can hear your house.",
+      "why": "Wired is cheaper and never runs out of battery. Comfort matters more than surround sound for four-hour raids.",
+      "store": "amazon",
+      "q": "gaming headset noise cancelling microphone comfortable"
+    },
+    {
+      "tier": "epic",
+      "name": "World of Warcraft Chronicle, all three volumes",
+      "slot": "Shelf",
+      "for": [
+        "collector"
+      ],
+      "use": "The full history, from the Titans to the present day.",
+      "why": "Looks good on a shelf, and they'll come back to it every time a quest mentions someone they don't know.",
+      "store": "amazon",
+      "q": "World of Warcraft Chronicle box set volumes 1 2 3"
+    },
+    {
+      "tier": "legendary",
+      "name": "A 1440p high-refresh monitor",
+      "slot": "Desk",
+      "for": [
+        "raider",
+        "new player"
+      ],
+      "use": "Shows you the whole raid instead of a blurry crowd.",
+      "why": "A 27-inch, 1440p, 144 Hz screen is the sweet spot for WoW. Get an ultrawide if they'd like more of the world on screen. WoW handles 21:9 well.",
+      "store": "amazon",
+      "q": "27 inch 1440p 144Hz IPS gaming monitor"
+    },
+    {
+      "tier": "legendary",
+      "name": "A stream deck",
+      "slot": "Desk",
+      "for": [
+        "streams",
+        "raider"
+      ],
+      "use": "Buttons for mounts, macros, the stream scene and ready checks.",
+      "why": "An Elgato Stream Deck turns fiddly keybinds into labelled buttons. It's great for anyone who streams or plays a class with a long macro list.",
+      "store": "amazon",
+      "q": "Elgato Stream Deck"
+    }
+  ]
+}
