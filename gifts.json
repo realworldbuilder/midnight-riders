@@ -42,7 +42,9 @@
       "use": "Adds Battle.net balance for the subscription, a mount or a name change.",
       "why": "It's the dull choice, and it's the one they'll use. Get the digital code and it can go in a card the night before.",
       "store": "amazon",
-      "q": "Blizzard Battle.net gift card digital code"
+      "q": "Blizzard Battle.net gift card digital code",
+      "image": "images/gifts/giftcard.jpg",
+      "art": true
     },
     {
       "tier": "uncommon",
@@ -54,7 +56,8 @@
       "use": "Explains why everyone in Northrend is so upset.",
       "why": "Christie Golden's novel is the best of the Warcraft books and it's in paperback. Forever's road runs toward Naxxramas, so it's the right one to read this year.",
       "store": "amazon",
-      "q": "Arthas Rise of the Lich King Christie Golden paperback"
+      "q": "Arthas Rise of the Lich King Christie Golden paperback",
+      "image": "images/gifts/arthas.jpg"
     },
     {
       "tier": "uncommon",
@@ -64,9 +67,10 @@
         "collector"
       ],
       "use": "Watches over the keyboard during raid night.",
-      "why": "There are Pops of Arthas, Illidan, Sylvanas and others. Ask which faction first. Get it wrong and it's a talking point all evening.",
+      "why": "Funko's current WoW range has Jaina, Xal'atath and a few murlocs. Ask which faction they play first, or it becomes a talking point all evening.",
       "store": "amazon",
-      "q": "Funko Pop World of Warcraft"
+      "q": "Funko Pop World of Warcraft",
+      "image": "images/gifts/funko.jpg"
     },
     {
       "tier": "uncommon",
@@ -79,7 +83,8 @@
       "use": "Bedtime stories told the way people in Azeroth tell them.",
       "why": "A short illustrated hardback. Works for a player with kids or a kid who plays.",
       "store": "amazon",
-      "q": "World of Warcraft Folk and Fairy Tales of Azeroth"
+      "q": "World of Warcraft Folk and Fairy Tales of Azeroth",
+      "image": "images/gifts/folk.jpg"
     },
     {
       "tier": "uncommon",
@@ -90,9 +95,10 @@
         "raider"
       ],
       "use": "Your mouse stops falling off the edge in the middle of a fight.",
-      "why": "A plain one that covers the whole desk is the cheapest real upgrade there is. Skip the RGB.",
+      "why": "One that covers the whole desk is the cheapest real upgrade there is. SteelSeries makes a QcK XXL with WoW art; a plain one works just as well. Skip the RGB.",
       "store": "amazon",
-      "q": "extended desk mat large mouse pad stitched edges"
+      "q": "SteelSeries QcK XXL World of Warcraft mouse pad",
+      "image": "images/gifts/deskmat.jpg"
     },
     {
       "tier": "rare",
@@ -105,7 +111,8 @@
       "use": "Teaches the recipes from the game, worked out for a real kitchen.",
       "why": "Chelsea Monroe-Cassel's cookbook is the gift that gets used on raid night. Spiced Wolf Meat for real.",
       "store": "amazon",
-      "q": "World of Warcraft The Official Cookbook Monroe-Cassel"
+      "q": "World of Warcraft The Official Cookbook Monroe-Cassel",
+      "image": "images/gifts/cookbook.jpg"
     },
     {
       "tier": "rare",
@@ -118,7 +125,8 @@
       "use": "A guided tour of the zones Forever starts in.",
       "why": "Westfall, Duskwood and Stranglethorn, written as a travel book. There's a Kalimdor volume for Horde players.",
       "store": "amazon",
-      "q": "World of Warcraft Exploring Azeroth Eastern Kingdoms"
+      "q": "World of Warcraft Exploring Azeroth Eastern Kingdoms",
+      "image": "images/gifts/eastern.jpg"
     },
     {
       "tier": "rare",
@@ -131,7 +139,8 @@
       "use": "Twenty thousand years of backstory, with art on every page.",
       "why": "Blizzard's own history of the world, as a big hardback. If they love it, volumes 2 and 3 are next year's presents.",
       "store": "amazon",
-      "q": "World of Warcraft Chronicle Volume 1 hardcover"
+      "q": "World of Warcraft Chronicle Volume 1 hardcover",
+      "image": "images/gifts/chronicle1.jpg"
     },
     {
       "tier": "rare",
@@ -144,7 +153,8 @@
       "use": "Lets everyone know you main a warrior, rogue, druid or hunter.",
       "why": "Made by our guild master: rope caps with original class art, made in Los Angeles, $39 in seven colours.",
       "store": "etsy",
-      "url": "https://fortheguild.etsy.com"
+      "url": "https://fortheguild.etsy.com",
+      "image": "images/gifts/cap.jpg"
     },
     {
       "tier": "rare",
@@ -157,7 +167,8 @@
       "use": "The book every 2004 player had open next to the keyboard.",
       "why": "It's out of print, but used copies come up on eBay all the time. Check it has the map poster inside.",
       "store": "ebay",
-      "q": "World of Warcraft BradyGames official strategy guide 2004"
+      "q": "World of Warcraft BradyGames official strategy guide 2004",
+      "image": "images/gifts/bradyguide.jpg"
     },
     {
       "tier": "epic",
@@ -169,7 +180,9 @@
       "use": "Two to four players take on the Lich King together.",
       "why": "Z-Man's co-op game, built on the Pandemic system. Good for a player and a partner who doesn't play WoW.",
       "store": "amazon",
-      "q": "World of Warcraft Wrath of the Lich King board game Z-Man"
+      "q": "World of Warcraft Wrath of the Lich King board game Z-Man",
+      "image": "images/gifts/boardgame.jpg",
+      "art": true
     },
     {
       "tier": "epic",
@@ -182,7 +195,8 @@
       "use": "Puts twelve keybinds under your thumb.",
       "why": "The Razer Naga and the Corsair Scimitar are the usual picks. They're the biggest comfort upgrade for a game with forty buttons.",
       "store": "amazon",
-      "q": "MMO gaming mouse 12 side buttons Razer Naga Corsair Scimitar"
+      "q": "MMO gaming mouse 12 side buttons Razer Naga Corsair Scimitar",
+      "image": "images/gifts/mouse.jpg"
     },
     {
       "tier": "epic",
@@ -194,7 +208,8 @@
       "use": "The raid leader can hear your callouts, and nobody else can hear your house.",
       "why": "Wired is cheaper and never runs out of battery. Comfort matters more than surround sound for four-hour raids.",
       "store": "amazon",
-      "q": "gaming headset noise cancelling microphone comfortable"
+      "q": "gaming headset noise cancelling microphone comfortable",
+      "image": "images/gifts/headset.jpg"
     },
     {
       "tier": "epic",
@@ -206,7 +221,8 @@
       "use": "The full history, from the Titans to the present day.",
       "why": "Looks good on a shelf, and they'll come back to it every time a quest mentions someone they don't know.",
       "store": "amazon",
-      "q": "World of Warcraft Chronicle box set volumes 1 2 3"
+      "q": "World of Warcraft Chronicle box set volumes 1 2 3",
+      "image": "images/gifts/chronicle-set.jpg"
     },
     {
       "tier": "legendary",
@@ -219,7 +235,8 @@
       "use": "Shows you the whole raid instead of a blurry crowd.",
       "why": "A 27-inch, 1440p, 144 Hz screen is the sweet spot for WoW. Get an ultrawide if they'd like more of the world on screen. WoW handles 21:9 well.",
       "store": "amazon",
-      "q": "27 inch 1440p 144Hz IPS gaming monitor"
+      "q": "27 inch 1440p 144Hz IPS gaming monitor",
+      "image": "images/gifts/monitor.jpg"
     },
     {
       "tier": "legendary",
@@ -232,7 +249,8 @@
       "use": "Buttons for mounts, macros, the stream scene and ready checks.",
       "why": "An Elgato Stream Deck turns fiddly keybinds into labelled buttons. It's great for anyone who streams or plays a class with a long macro list.",
       "store": "amazon",
-      "q": "Elgato Stream Deck"
+      "q": "Elgato Stream Deck",
+      "image": "images/gifts/streamdeck.jpg"
     }
   ]
 }

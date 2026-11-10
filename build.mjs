@@ -363,7 +363,8 @@ function giftsPage() {
   const STORE = { amazon: 'Find it on Amazon', etsy: 'See the caps on Etsy', ebay: 'Find it on eBay' };
   const tip = (x, t) => {
     const paid = (x.store === 'amazon' && tag) || (x.store === 'ebay' && camp);
-    return `<li class="tip q-${t.key}"><b class="tip-name">${esc(x.name)}</b>
+    const pic = x.image ? `<a class="tip-pic${x.slot === 'Book' || x.art ? ' is-cover' : ''}" href="${esc(url(x))}" rel="${paid ? 'sponsored noopener' : 'noopener'}" target="_blank" tabindex="-1" aria-hidden="true"><img src="${esc(x.image)}" alt="" loading="lazy"></a>` : '';
+    return `<li class="tip q-${t.key}">${pic}<b class="tip-name">${esc(x.name)}</b>
 <span class="tip-bind">${x.ours ? 'Made by the guild' : 'Binds when gifted'}</span>
 <span class="tip-slot"><span>${esc(x.slot)}</span><span>${esc(t.band)}</span></span>
 <span class="tip-use">Use: ${esc(x.use)}</span>

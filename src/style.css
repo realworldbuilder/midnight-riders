@@ -295,3 +295,8 @@ kbd { flex: none; min-width: 112px; font: 600 12px/16px ui-monospace, "SF Mono",
 .tip-go .icon { width: 16px; height: 16px; }
 .tip-go:hover { border-bottom-color: var(--q); }
 @media (max-width: 860px) { .loot-head { font-size: 30px; } }
+.tip-pic { position: relative; display: block; aspect-ratio: 4 / 3; margin: calc(var(--s3) * -1 + 4px) calc(var(--s4) * -1 + 4px) var(--s3);
+  border-radius: 3px 3px 0 0; background: radial-gradient(120% 90% at 50% 40%, #FFFFFF, #E4E4E8); border-bottom: 2px solid var(--q); overflow: hidden; }
+.tip-pic img { position: absolute; inset: var(--s4); width: calc(100% - var(--s6)); height: calc(100% - var(--s6)); object-fit: contain; mix-blend-mode: multiply; transition: transform 500ms var(--ease); }
+.tip-pic.is-cover img { mix-blend-mode: normal; filter: drop-shadow(0 10px 14px rgba(0, 0, 0, 0.35)); }
+.tip:hover .tip-pic img { transform: translateY(-4px) scale(1.02); }
