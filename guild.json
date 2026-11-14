@@ -126,6 +126,11 @@
     ],
     "addons": [
       {
+        "name": "Midnight Riders Meter",
+        "url": "https://github.com/realworldbuilder/midnight-riders-addons",
+        "text": "Our own damage meter for Forever: damage, healing, interrupts and deaths. Turn on the game's meter in Options first. /mr"
+      },
+      {
         "name": "Rambleon",
         "url": "https://github.com/realworldbuilder/rambleon",
         "text": "Remembers your night: a timeline and a chapter when you log out. Free, macOS for now."
